@@ -3,7 +3,7 @@ Resources:
   - TargetService:
       Type: AWS::ECS::Service
       Properties:
-        TaskDefinition: "arn:aws:ecs:ap-south-1:498692135370:task-definition/ecs-fargate-service:10"
+        TaskDefinition: "arn:aws:ecs:ap-south-1:498692135370:task-definition/ecs-fargate-service:22"
         LoadBalancerInfo:
           ContainerName: "ecs-container"
           ContainerPort: 80
@@ -14,13 +14,13 @@ Resources:
 #            Subnets: ["subnet-1234abcd","subnet-5678abcd"]
 #            SecurityGroups: ["sg-12345678"]
 #            AssignPublicIp: "ENABLED"
-#        CapacityProviderStrategy:
-#          - Base: 1
-#            CapacityProvider: "FARGATE_SPOT"
-#            Weight: 2
-#          - Base: 0
-#            CapacityProvider: "FARGATE"
-#            Weight: 1
+        CapacityProviderStrategy:
+          - Base: 2
+            CapacityProvider: "FARGATE"
+            Weight: 50
+          - Base: 0
+            CapacityProvider: "FARGATE_SPOT"
+            Weight: 50
 #Hooks:
 #  - BeforeInstall: "LambdaFunctionToValidateBeforeInstall"
 #  - AfterInstall: "LambdaFunctionToValidateAfterInstall"
